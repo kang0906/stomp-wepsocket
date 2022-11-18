@@ -1,4 +1,4 @@
-package com.example.messagingstompwebsocket;
+package com.example.messagingstompwebsocket.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
