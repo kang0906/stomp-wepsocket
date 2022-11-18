@@ -33,7 +33,7 @@ function disconnect() {
 }
 
 function sendName() {
-    stompClient.send("/app/hello/1", {}, JSON.stringify({'name': $("#name").val()})); // 송신주소 /app/hello/{id}
+    stompClient.send("/app/hello/1", {}, JSON.stringify({'userName': $("#name").val(),'userId': 1234,'content': $("#name").val()+' content!'})); // 송신주소 /app/hello/{id}
 }
 
 function showGreeting(message) {

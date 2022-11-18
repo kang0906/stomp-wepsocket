@@ -14,16 +14,9 @@ public class GreetingController {
 	@Autowired
 	private SimpMessagingTemplate simpMessagingTemplate;
 
-	@MessageMapping("/hello")
-	@SendTo("/topic/greetings")
-	public Greeting greeting(HelloMessage message) throws Exception {
-//		Thread.sleep(1000); // simulated delay
-		return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
-	}
-
 	@MessageMapping("/hello/{id}")
-	public void greeting2(@DestinationVariable("id") String id, HelloMessage message) throws Exception {
+	public void greeting2(@DestinationVariable("id") String id, MessageDto message) throws Exception {
 
-		simpMessagingTemplate.convertAndSend("/topic/greetings/" + id , new Greeting( HtmlUtils.htmlEscape(message.getName()) + "!"));
+		simpMessagingTemplate.convertAndSend("/topic/greetings/" + id , new MessageDto(message.getUserName(), message.getUserId(),"Hi "+ HtmlUtils.htmlEscape(message.getUserName()) + "!"));
 	}
 }
