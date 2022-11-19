@@ -18,6 +18,6 @@ public class GreetingController {
 	public void greeting2(@DestinationVariable("id") String id, MessageDto message) throws Exception {
 
 		simpMessagingTemplate.convertAndSend("/topic/greetings/" + id ,
-				new MessageDto("", message.getUserId(),message.getUserName(),"Hi "+ HtmlUtils.htmlEscape(message.getUserName()) + "!"));
+				new MessageDto("", message.getUserId(), message.getUserName(),"Hi "+ HtmlUtils.htmlEscape(message.getUserName()) + "!"));
 	}
 }
