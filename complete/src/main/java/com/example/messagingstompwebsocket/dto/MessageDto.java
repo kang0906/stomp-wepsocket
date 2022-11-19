@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MessageDto {
 
-
-    private String userName;
+    private String action;
     private Long userId;
+    private String userName;
     private String content;
 
 
