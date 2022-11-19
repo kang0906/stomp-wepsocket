@@ -17,6 +17,7 @@ public class GreetingController {
 	@MessageMapping("/hello/{id}")
 	public void greeting2(@DestinationVariable("id") String id, MessageDto message) throws Exception {
 
-		simpMessagingTemplate.convertAndSend("/topic/greetings/" + id , new MessageDto(message.getUserName(), message.getUserId(),"Hi "+ HtmlUtils.htmlEscape(message.getUserName()) + "!"));
+		simpMessagingTemplate.convertAndSend("/topic/greetings/" + id ,
+				new MessageDto("", message.getUserId(),message.getUserName(),"Hi "+ HtmlUtils.htmlEscape(message.getUserName()) + "!"));
 	}
 }
