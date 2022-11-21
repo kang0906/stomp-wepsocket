@@ -54,7 +54,5 @@ public class GreetingController {
 		}else{
 			// todo : 예외처리 " -알수없는 요청- "
 		}
-		simpMessagingTemplate.convertAndSend("/topic/greetings/" + id ,
-				new MessageDto("", message.getChatRoomId(), message.getUserName(),"Hi "+ HtmlUtils.htmlEscape(message.getUserName()) + "!"));
 	}
 }

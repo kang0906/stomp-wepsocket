@@ -20,7 +20,7 @@ function connect() {
         console.log('Connected: ' + frame);
         console.log('Connected to : ' + '/topic/greetings/'+$("#userId").val());
         stompClient.subscribe('/topic/greetings/'+$("#userId").val(), function (greeting) {       // 수신주소 /topic/greetings/{id}
-            showGreeting("room: "+JSON.parse(greeting.body).chatRoomId+ " - " + JSON.parse(greeting.body).userName+" : " + JSON.parse(greeting.body).content);
+            showGreeting("room: "+JSON.parse(greeting.body).chatRoomId+ " - [" + JSON.parse(greeting.body).userName+"] : " + JSON.parse(greeting.body).content);
         });
     });
 }
