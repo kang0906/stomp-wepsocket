@@ -2,11 +2,12 @@ package com.example.messagingstompwebsocket.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 
 @Data
-@AllArgsConstructor
+@NoArgsConstructor
 public class ChatCreateRequestDto {
 
     private String userIdList;

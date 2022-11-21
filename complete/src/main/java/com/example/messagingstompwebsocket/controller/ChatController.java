@@ -38,7 +38,7 @@ public class ChatController {
 
     @DeleteMapping("/chatroom/{id}")
     public ResponseDto deleteChatRoom(@PathVariable String id){       // todo : 채팅방 삭제 - 사용자 인증, 인가 정보 필요 @AuthenticationPrincipal UserDetailsImpl userDetails,
-
+        // todo : 구현
         log.info("member [ 수정필요(인증정보 부분) ] called deleteChatRoom");
         return new ResponseDto("success", null);
     }

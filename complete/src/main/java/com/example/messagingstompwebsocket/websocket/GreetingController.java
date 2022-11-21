@@ -5,7 +5,6 @@ import com.example.messagingstompwebsocket.entity.ChatRoom;
 import com.example.messagingstompwebsocket.repository.ChatRoomRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -22,16 +21,17 @@ public class GreetingController {
 	private final SimpMessagingTemplate simpMessagingTemplate;
 	private final ChatRoomRepository chatRoomRepository;
 
-	@MessageMapping("/hello/{id}")
+//	@MessageMapping("/hello/{id}")
 	public void greeting2(@DestinationVariable("id") String id, MessageDto message) throws Exception {
 		log.info("called greeting2 with id : {}", id);
 		simpMessagingTemplate.convertAndSend("/topic/greetings/" + id ,
 				new MessageDto("", message.getChatRoomId(), message.getUserName(),"Hi "+ HtmlUtils.htmlEscape(message.getUserName()) + "!"));
 	}
 
-//	@MessageMapping("/hello/{id}")
+	@MessageMapping("/hello/{id}")
 	public void socketHandle(@DestinationVariable("id") String id, MessageDto message) throws Exception {
 
+		log.info("socketHandle: id={}, MessageDto={}",id,message);
 //		if(message.getAction().equals("MESSAGE")){
 //
 //		}else if(message.getAction().equals("CREATE")){

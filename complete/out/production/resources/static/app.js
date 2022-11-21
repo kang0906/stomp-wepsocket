@@ -18,8 +18,9 @@ function connect() {
     stompClient.connect({}, function (frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/greetings/1', function (greeting) {       // 수신주소 /topic/greetings/{id}
-            showGreeting(JSON.parse(greeting.body).content);
+        console.log('Connected to : ' + '/topic/greetings/'+$("#userId").val());
+        stompClient.subscribe('/topic/greetings/'+$("#userId").val(), function (greeting) {       // 수신주소 /topic/greetings/{id}
+            showGreeting("room: "+JSON.parse(greeting.body).chatRoomId+ " - " + JSON.parse(greeting.body).userName+" : " + JSON.parse(greeting.body).content);
         });
     });
 }
@@ -33,7 +34,7 @@ function disconnect() {
 }
 
 function sendName() {
-    stompClient.send("/app/hello/1", {}, JSON.stringify({'userName': $("#name").val(),'userId': 1234,'content': $("#name").val()+' content!'})); // 송신주소 /app/hello/{id}
+    stompClient.send("/app/hello/"+$("#userId").val(), {}, JSON.stringify({'action': 'MESSAGE','userName': $("#name").val(),'chatRoomId':  $("#chatRoomId").val(),'content': $("#content").val()})); // 송신주소 /app/hello/{id}
 }
 
 function showGreeting(message) {
